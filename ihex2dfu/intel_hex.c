@@ -123,8 +123,9 @@ bool ihex_read_file(char *filename, uint8_t *buffer, unsigned int buffer_size, u
 					res = false;
 					break;
 				}
-				base_addr = read_base16(c, 4) << 4;
+				base_addr = read_base16(c, 4);
 				checksum += (base_addr >> 8) + (base_addr & 0xFF);
+				base_addr <<= 4;
 				//printf("%u:\tbase_addr = %X\n", line_num, base_addr);
 				c += 4;
 				break;
